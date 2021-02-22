@@ -1,0 +1,14 @@
+[Unit]
+Description=uWSGI instance to serve myproject
+After=network.target
+
+[Service]
+EnvironmentFile=/home/andrew_gaitskell/Games/TicTacToe-Pygame/gunicorn/socketio1/service.conf
+User=andrew_gaitskell
+Group=www-data
+WorkingDirectory=/home/andrew_gaitskell/Games/TicTacToe-Pygame/gunicorn/websock1
+Environment="PATH=/home/andrew_gaitskell/Games/env/bin"
+ExecStart=/home/andrew_gaitskell/Games/env/bin/gunicorn --bind 127.0.0.1:5002 --worker-class eventlet -w 1 app:app
+
+[Install]
+WantedBy=multi-user.target
