@@ -8,5 +8,6 @@ sudo apt update
 
 sudo apt upgrade -Y
 
+git clone https://github.com/andrewcgaitskell/WebSocketServer.git
 
 open firewall port 5010
