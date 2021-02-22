@@ -32,3 +32,4 @@ bash run_asyncio_webserver.sh
 
 Open Clients in Colab and update IP address
 
+Use link shared with you to access the Notebooks on Google drive.
