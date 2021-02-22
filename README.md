@@ -12,7 +12,7 @@ https://docs.aiohttp.org/en/v0.18.2/web.html
 
 https://docs.aiohttp.org/en/v0.18.2/gunicorn.html
 
-# How to run the Server
+# How to run the Web Socket Server once VM is built
 
 ## Enable Virtual Environment
 
@@ -27,3 +27,8 @@ cd /home/andrew_gaitskell/WebSocketServer/aiohttp
 ## Run Shell Script
 
 bash run_asyncio_webserver.sh
+
+# Running Clients
+
+Open Clients in Colab and update IP address
+
