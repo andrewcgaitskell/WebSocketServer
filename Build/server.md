@@ -4,6 +4,9 @@ allow http and https traffic
 
 fix the ip address
 
-install git
+sudo apt update
+
+sudo apt upgrade -Y
+
 
 open firewall port 5010
