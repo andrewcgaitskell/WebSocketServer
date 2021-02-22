@@ -1,13 +1,30 @@
-create very basic ubuntu 18.4 linux virtual server
+# Create Basic VM
 
-allow http and https traffic
+    create very basic ubuntu 18.4 linux virtual server
 
-fix the ip address
+    allow http and https traffic
 
-sudo apt update
+    fix the ip address
 
-sudo apt upgrade -Y
+# open firewall
+
+    open firewall port 5010
+
+# Connect via SSH clone this Repository
 
 git clone https://github.com/andrewcgaitskell/WebSocketServer.git
 
-open firewall port 5010
+# Install Python
+
+cd /home/andrew_gaitskell/WebSocketServer/Build
+
+bash 020_installPython3.sh
+
+# Manually Create and Enable Virtual Environment
+
+see 030_makeEnv+Activate
+
+# Install Libraries
+
+bash 040_pips.sh
+
