@@ -1,15 +1,15 @@
-sudo apt update -Y
+sudo apt update -y
 
-sudo apt upgrade -Y
+sudo apt upgrade -y
 
-sudo apt install python-software-properties -Y
+sudo apt install python-software-properties -y
 
-sudo apt install software-properties-common -Y
+sudo apt install software-properties-common -y
 
-sudo apt install python3 -Y
-sudo apt install python3-dev -Y
-sudo apt install libpq-dev -Y
+sudo apt install python3 -y
+sudo apt install python3-dev -y
+sudo apt install libpq-dev -y
 
-sudo apt install python3-pip -Y
+sudo apt install python3-pip -y
 
-sudo apt install python3-venv -Y
+sudo apt install python3-venv -y
