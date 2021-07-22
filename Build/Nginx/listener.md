@@ -1,5 +1,27 @@
+# add external ip address to DNS record
 
 
+# make index.html
+
+
+    cd /var/www
+    sudo mkdir listener
+    cd listener
+    sudo nano index.html
+
+# paste html into file
+
+    <!doctype html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <title>Hello, Listener!</title>
+    </head>
+    <body>
+        <h1>Hello, Player!</h1>
+        <p>Debian!</p>
+    </body>
+    </html>
 
 # change to correct site folder
 
