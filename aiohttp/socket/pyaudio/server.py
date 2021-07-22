@@ -4,9 +4,9 @@ import socket
 import threading, wave, pyaudio,pickle,struct
 
 host_name = socket.gethostname()
-host_ip = '192.168.1.102'#  socket.gethostbyname(host_name)
+host_ip = ''#  socket.gethostbyname(host_name)
 print(host_ip)
-port = 9611
+port = 5010
 
 def audio_stream():
     server_socket = socket.socket()
