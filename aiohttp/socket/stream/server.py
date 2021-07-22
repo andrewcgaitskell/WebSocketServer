@@ -2,7 +2,7 @@ import pickle
 import socket
 import struct
 
-HEADER_SIZE = 10
+HEADER_SIZE = 4
 HOST = ""
 PORT = 5010
 
