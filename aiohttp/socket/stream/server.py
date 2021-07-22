@@ -3,8 +3,8 @@ import socket
 import struct
 
 HEADER_SIZE = 4
-HOST = "127.0.0.1"
-PORT = 12000
+HOST = ""
+PORT = 5010
 
 
 def receive(nb_bytes, conn):
