@@ -1,28 +1,15 @@
+# Echo server program
 import socket
-import time
 
-
-HEADERSIZE = 10
-
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.bind((socket.gethostname(), 1243))
-s.listen(5)
-
-while True:
-    # now our endpoint knows about the OTHER endpoint.
-    clientsocket, address = s.accept()
-    print(f"Connection from {address} has been established.")
-
-    msg = "Welcome to the server!"
-    msg = f"{len(msg):<{HEADERSIZE}}"+msg
-
-    clientsocket.send(bytes(msg,"utf-8"))
-
-    while True:
-        time.sleep(3)
-        msg = f"The time is {time.time()}"
-        msg = f"{len(msg):<{HEADERSIZE}}"+msg
-
-        print(msg)
-
-        clientsocket.send(bytes(msg,"utf-8"))
+HOST = ''                 # Symbolic name meaning all available interfaces
+PORT = 50007              # Arbitrary non-privileged port
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+    s.bind((HOST, PORT))
+    s.listen(1)
+    conn, addr = s.accept()
+    with conn:
+        print('Connected by', addr)
+        while True:
+            data = conn.recv(1024)
+            if not data: break
+            conn.sendall(data)
