@@ -16,3 +16,13 @@
 
     sudo apt install python3-venv -y
     
+# Create & Activate Virtual Environment
+
+    cd ~
+
+    python3 -m venv env
+
+    source $PWD/env/bin/activate
+    
+# Install relevent Python libraries
+
