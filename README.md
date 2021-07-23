@@ -46,4 +46,15 @@ SSH into instance
     
     CD ~/WebSocketServer
     
+Start up local Jupyter workbook
 
+## Start Terminal
+    
+## Activate Virtual Environment
+    
+    CD ~/Documents/Code
+    
+    source env-audio/bin/activate
+    
+    jupyter notebook
+    
