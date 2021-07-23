@@ -1,43 +1,31 @@
-import socket
-import time
-import pickle
+import socket               # Import socket module
+import thread
 
-
-HEADERSIZE = 10
-
-HOST = ''
-PORT = 5010
-
-#d = {1:"hi", 2: "there"}
-#msg = pickle.dumps(d)
-#msg = bytes(f"{len(msg):<{HEADERSIZE}}", 'utf-8')+msg
-#print(msg)
-#clientsocket.send(msg)
-
-with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-    s.bind((HOST, PORT))
-    s.listen()
-    clientsocket, address = s.accept()
-    print('Connected by', address)
-    
-    full_msg = b''
-    new_msg = True
+def on_new_client(clientsocket,addr):
     while True:
-        msg = s.recv(16)
-        if new_msg:
-            print("new msg len:",msg[:HEADERSIZE])
-            msglen = int(msg[:HEADERSIZE])
-            new_msg = False
+        msg = clientsocket.recv(1024)
+        #do some checks and if msg == someWeirdSignal: break:
+        print addr, ' >> ', msg
+        msg = raw_input('SERVER >> ')
+        #Maybe some code to compute the last digit of PI, play game or anything else can go here and when you are done.
+        clientsocket.send(msg)
+    clientsocket.close()
 
-        print(f"full message length: {msglen}")
+s = socket.socket()         # Create a socket object
+host = '' # Get local machine name
+port = 5010                # Reserve a port for your service.
 
-        full_msg += msg
+print 'Server started!'
+print 'Waiting for clients...'
 
-        print(len(full_msg))
+s.bind((host, port))        # Bind to the port
+s.listen(5)                 # Now wait for client connection.
 
-        if len(full_msg)-HEADERSIZE == msglen:
-            print("full msg recvd")
-            print(full_msg[HEADERSIZE:])
-            print(pickle.loads(full_msg[HEADERSIZE:]))
-            new_msg = True
-            full_msg = b""
+print 'Got connection from', addr
+while True:
+   c, addr = s.accept()     # Establish connection with client.
+   thread.start_new_thread(on_new_client,(c,addr))
+   #Note it's (addr,) not (addr) because second parameter is a tuple
+   #Edit: (c,addr)
+   #that's how you pass arguments to functions when creating new threads using thread module.
+s.close()
