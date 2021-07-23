@@ -33,3 +33,17 @@ bash run_asyncio_webserver.sh
 Open Clients in Colab and update IP address
 
 Use link shared with you to access the Notebooks on Google drive.
+
+# Working on Streaming live Audio data to GCP
+
+## Morning routine
+
+Start instance
+
+SSH into instance
+
+    source env/bin/activate
+    
+    CD ~/WebSocketServer
+    
+
