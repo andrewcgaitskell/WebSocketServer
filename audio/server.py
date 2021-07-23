@@ -1,5 +1,5 @@
 import socket               # Import socket module
-import thread
+import threading
 
 def on_new_client(clientsocket,addr):
     while True:
@@ -24,7 +24,7 @@ s.listen(5)                 # Now wait for client connection.
 print('Got connection from', addr)
 while True:
    c, addr = s.accept()     # Establish connection with client.
-   thread.start_new_thread(on_new_client,(c,addr))
+   threading.start_new_thread(on_new_client,(c,addr))
    #Note it's (addr,) not (addr) because second parameter is a tuple
    #Edit: (c,addr)
    #that's how you pass arguments to functions when creating new threads using thread module.
