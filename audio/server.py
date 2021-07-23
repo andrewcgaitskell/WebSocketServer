@@ -25,7 +25,7 @@ s.listen(5)                 # Now wait for client connection.
 print('Got connection from', addr)
 while True:
    c, addr = s.accept()     # Establish connection with client.
-   threading.start_new_thread(on_new_client,(c,addr))
+   threading.Thread(target=on_new_client,args=(c,addr)))
    #Note it's (addr,) not (addr) because second parameter is a tuple
    #Edit: (c,addr)
    #that's how you pass arguments to functions when creating new threads using thread module.
