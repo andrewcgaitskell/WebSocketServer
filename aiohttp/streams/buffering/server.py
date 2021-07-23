@@ -5,7 +5,7 @@ import socket
 HEADERSIZE = 10
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.bind((socket.gethostname(), 1241))
+s.bind(('', 5010))
 s.listen(5)
 
 while True:
