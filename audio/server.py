@@ -1,5 +1,6 @@
 import socket               # Import socket module
 import threading
+addr = ''
 
 def on_new_client(clientsocket,addr):
     while True:
