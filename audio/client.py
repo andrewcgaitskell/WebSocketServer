@@ -1,20 +1,30 @@
-class Client( object ):
-    rbufsize= -1
-    wbufsize= 0
-    def __init__( self, address=('localhost',7000) ):
-        self.server=socket.socket( socket.AF_INET, socket.SOCK_STREAM )
-        self.server.connect( address )
-        self.rfile = self.server.makefile('rb', self.rbufsize)
-        self.wfile = self.server.makefile('wb', self.wbufsize)
-    def makeRequest( self, text ):
-        """send a message and get a 1-line reply"""
-        self.wfile.write( text + '\n' )
-        data= self.rfile.read()
-        self.server.close()
-        return data
+import asyncore
 
-print "Connecting to Echo Server"
-c= Client()
-response= c.makeRequest( "Greetings" )
-print repr(response)
-print "Finished"
+class HTTPClient(asyncore.dispatcher):
+
+    def __init__(self, host, path):
+        asyncore.dispatcher.__init__(self)
+        self.create_socket()
+        self.connect( (host, 5010) )
+        self.buffer = bytes('GET %s HTTP/1.0\r\nHost: %s\r\n\r\n' %
+                            (path, host), 'ascii')
+
+    def handle_connect(self):
+        pass
+
+    def handle_close(self):
+        self.close()
+
+    def handle_read(self):
+        print(self.recv(8192))
+
+    def writable(self):
+        return (len(self.buffer) > 0)
+
+    def handle_write(self):
+        sent = self.send(self.buffer)
+        self.buffer = self.buffer[sent:]
+
+
+client = HTTPClient('acgtest.info', '/')
+asyncore.loop()
