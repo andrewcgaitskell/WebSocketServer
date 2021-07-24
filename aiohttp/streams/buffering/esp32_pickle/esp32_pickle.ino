@@ -6,15 +6,11 @@ char ssid[] = SECRET_SSID;   // your network SSID (name)
 char password[] = SECRET_PASS;   // your network password
 String myScript = SECRET_SCRIPT;   // your network password
 
-const char* test_root_ca = SECRET_ROOT_CA;
+//const char* test_root_ca = SECRET_ROOT_CA;
 
 WiFiClientSecure  client;
 
-//const char* ssid     = "SSID";   //your network SSID
-//const char* password = "PASSWORD";   //your network password
-const char* myDomain = "script.google.com";
-
-const char* host  = "acgtest.info";
+const char* host  = SECRET_HOST;
 
 void setup()
 {
