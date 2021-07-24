@@ -2,6 +2,17 @@
 
 #include <WiFi.h>
 
+#include "secrets.h"
+
+char ssid[] = SECRET_SSID;   // your network SSID (name) 
+char password[] = SECRET_PASS;   // your network password
+char host[] = SECRET_HOST;   // your network password
+
+String myScript = SECRET_SCRIPT;   // your network password
+
+const char* test_root_ca = SECRET_ROOT_CA;
+
+
 //////////////////////////////////////
 
 #include <driver/i2s.h>
@@ -16,10 +27,6 @@ uint16_t offset = (int)ADC_INPUT * 0x1000 + 0xFFF;
 uint16_t samples[SAMPLEBLOCK];
 
 ///////////////////////////////////////
-const char* ssid     = "acg34rg_orbi";
-const char* password = "Time4Tea";
-
-const char* host  = "acgtest.info";
 
 void setup()
 {
