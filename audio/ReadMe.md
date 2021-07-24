@@ -8,3 +8,5 @@ https://forum.derivative.ca/t/python-threaded-tcp-socket-server-example/12002
 
 https://gist.github.com/tuxfight3r/bfd95575ce34af6bd3317611dc04006c
 
+https://github.com/python/cpython/blob/3.9/Lib/socketserver.py
+
