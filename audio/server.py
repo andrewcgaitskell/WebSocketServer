@@ -1,11 +1,24 @@
-import SocketServer
+import asyncore
 
-class EchoHandler( SocketServer.StreamRequestHandler ):
-    def handle(self):
-        input= self.request.recv(1024)
-        print "Input: %r" % ( input, )
-        self.request.send("Heard: %r\n" % ( input, ) )
+class EchoHandler(asyncore.dispatcher_with_send):
 
-server= SocketServer.TCPServer( ("",5010), EchoHandler )
-print "Starting Server"
-server.serve_forever()
+    def handle_read(self):
+        data = self.recv(8192)
+        if data:
+            self.send(data)
+
+class EchoServer(asyncore.dispatcher):
+
+    def __init__(self, host, port):
+        asyncore.dispatcher.__init__(self)
+        self.create_socket()
+        self.set_reuse_addr()
+        self.bind((host, port))
+        self.listen(5)
+
+    def handle_accepted(self, sock, addr):
+        print('Incoming connection from %s' % repr(addr))
+        handler = EchoHandler(sock)
+
+server = EchoServer('localhost', 5010)
+asyncore.loop()
