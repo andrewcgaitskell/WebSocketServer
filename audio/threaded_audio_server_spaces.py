@@ -6,7 +6,6 @@ from _thread import *
 import threading
 
 from datetime import datetime, timezone
->>> datetime.now(timezone.utc).astimezone().isoformat()
 
 print_lock = threading.Lock()
 
