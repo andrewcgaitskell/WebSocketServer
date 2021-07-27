@@ -36,7 +36,8 @@ def threaded(c):
         my_date = datetime.now(timezone.utc).astimezone().isoformat()
         filename = my_date
         folder = '~/data/audio/'
-        fullfilename = folder + filename
+        myfolder = '/home/andrew_gaitskell/data/audio/'
+        fullfilename = myfolder + filename + '.bytes'
         
         with open(fullfilename, "wb") as binary_file: 
             # Write bytes to file 
