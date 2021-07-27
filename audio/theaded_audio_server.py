@@ -11,21 +11,32 @@ print_lock = threading.Lock()
 def threaded(c):
 	while True:
 
-		# data received from client
-		data = c.recv(1024)
-		if not data:
-			print('Bye')
-			
-			# lock released on exit
-			print_lock.release()
-			break
+		jsonString = bytearray()
 
-		# reverse the given string from client
-		data = data[::-1]
+		for _ in range(32):
 
-		# send back reversed string to client
-		c.send(data)
+		    packet = c.recv(1024)
+		    if not packet:
+		       break
+		    jsonString.extend(packet)
 
+		    ##Data resides in jsonString variable
+
+
+		    ##some_bytes = b'\xC3\xA9'
+
+
+		    # Open in "wb" mode to 
+		    # write a new file, or  
+		    # "ab" mode to append 
+		    my_date = datetime.now()
+		    filename = my_date.isoformat()
+		    folder = '~/data/audio/'
+
+		    with open(filename, "wb") as binary_file: 
+			# Write bytes to file 
+				binary_file.write(jsonString)
+                
 	# connection closed
 	c.close()
 
