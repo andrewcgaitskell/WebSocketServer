@@ -17,7 +17,7 @@ def threaded(c):
 
 			packet = c.recv(1024)
 		    if not packet:
-		       break
+				break
 		    jsonString.extend(packet)
 
 		    ##Data resides in jsonString variable
