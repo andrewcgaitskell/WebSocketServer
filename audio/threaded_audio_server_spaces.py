@@ -5,7 +5,8 @@ import socket
 from _thread import *
 import threading
 
-import datetime
+from datetime import datetime, timezone
+>>> datetime.now(timezone.utc).astimezone().isoformat()
 
 print_lock = threading.Lock()
 
@@ -31,8 +32,8 @@ def threaded(c):
         # Open in "wb" mode to 
         # write a new file, or  
         # "ab" mode to append 
-        my_date = datetime.now()
-        filename = my_date.isoformat()
+        my_date = datetime.now(timezone.utc).astimezone().isoformat()
+        filename = my_date
         folder = '~/data/audio/'
 
         with open(filename, "wb") as binary_file: 
