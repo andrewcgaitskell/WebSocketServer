@@ -18,8 +18,10 @@ def threaded(c):
         for _ in range(32):
 
             packet = c.recv(1024)
+        
         if not packet:
             break
+        
         jsonString.extend(packet)
 
         ##Data resides in jsonString variable
@@ -34,8 +36,9 @@ def threaded(c):
         my_date = datetime.now(timezone.utc).astimezone().isoformat()
         filename = my_date
         folder = '~/data/audio/'
-
-        with open(filename, "wb") as binary_file: 
+        fullfilename = folder + filename
+        
+        with open(fullfilename, "wb") as binary_file: 
             # Write bytes to file 
             binary_file.write(jsonString)
 
