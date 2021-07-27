@@ -1,0 +1,54 @@
+//Here is a general TCP sending / receiving loop:
+
+while (client.available() || client.connected())
+{
+    if (client.available())
+    {
+        // client.available() bytes are immediately available for reading
+        // warning: reading them *allows* peer to send more, so they should
+        // be read *only* when they can immediately be processed, see below
+        // for flow control
+    }
+    if (client.connected())
+    {
+        if (client.availableForWrite() >= N)
+        {
+            // TCP layer will be able to *bufferize* our N bytes,
+            // and send them *asynchronously*, with by default
+            // a small delay if those data are small
+            // because Nagle is around (~200ms)
+            // unless client.setNoDelay(true) was called.
+            //
+            // In any case client.write() will *never* block here
+        }
+        else
+        {
+            // or we can send but it will take time because data are too
+            // big to be asynchronously bufferized: TCP needs to receive
+            // some ACKs to release its buffers.
+            // That means that write() will block until it receives
+            // authorization to send because we are not in a
+            // multitasking environment
+
+            // It is always OK to do this, client.availableForWrite() is
+            // only needed when efficiency is a priority and when data
+            // to send can wait where they currently are, especially
+            // when they are in another tcp client.
+
+            // Flow control:
+            // It is also important to know that the ACKs we are sending
+            // to remote are directly generated from client.read().
+            // It means that:
+            // Not immediately reading available data can be good for
+            // flow control and avoid useless memory filling/overflow by
+            // preventing peer from sending more data, and slow down
+            // incoming bandwidth
+            // (tcp is really a nice and efficient beast)
+        }
+    }
+
+    // this is necessary for long duration loops (harmless otherwise)
+
+    yield();
+}
+
