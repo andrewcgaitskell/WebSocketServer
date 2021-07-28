@@ -17,9 +17,9 @@ def threaded(c):
 
         jsonString = bytearray()
 
-        for _ in range(128):
+        for _ in range(64):
 
-            packet = c.recv(8192)
+            packet = c.recv(1024)
         
             if not packet:
                 break
