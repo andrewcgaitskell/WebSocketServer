@@ -19,7 +19,7 @@ def threaded(c):
 
         for _ in range(32):
 
-            packet = c.recv(1024)
+            packet = c.recv(8192)
         
             if not packet:
                 break
