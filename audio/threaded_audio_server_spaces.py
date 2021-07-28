@@ -1,6 +1,8 @@
 # import socket programming library
 import socket
 
+import os
+
 # import thread module
 from _thread import *
 import threading
@@ -33,16 +35,22 @@ def threaded(c):
         # Open in "wb" mode to 
         # write a new file, or  
         # "ab" mode to append 
-        my_date = datetime.now(timezone.utc).astimezone().isoformat()
-        filename = my_date
+        start_date = datetime.now(timezone.utc).isoformat()
+        filename = start_date
         folder = '~/data/audio/'
         myfolder = '/home/andrew_gaitskell/data/audio/'
-        fullfilename = myfolder + filename + '.bytes'
+        fullfilename = myfolder + filename
         
         with open(fullfilename, "wb") as binary_file: 
             # Write bytes to file 
             binary_file.write(jsonString)
 
+        end_date = datetime.now(timezone.utc).isoformat()
+        
+        newfilename = fullfilename + '_' + end_date + '.bytes'
+        
+        os.rename(fullfilename, newfilename)
+        
     # connection closed
     c.close()
 
