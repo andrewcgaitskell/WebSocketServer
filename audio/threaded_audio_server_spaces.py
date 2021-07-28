@@ -15,19 +15,28 @@ print_lock = threading.Lock()
 def threaded(c):
     while True:
 
-        jsonString = bytearray()
+        #jsonString = bytearray()
 
-        for _ in range(42):
-
-            packet = c.recv(1024)
-        
-            if not packet:
-                break
-
-            jsonString.extend(packet)
+        #for _ in range(42):
+        #    packet = c.recv(1024)
+        #    if not packet:
+        #        break
+        #    jsonString.extend(packet)
 
         ##Data resides in jsonString variable
-
+        chunks = []
+        bytes_recd = 0
+        MSGLEN = 1024
+        while bytes_recd < MSGLEN:
+            chunk = self.sock.recv(min(MSGLEN - bytes_recd, 2048))
+            if chunk == '':
+                raise RuntimeError("socket connection broken")
+            chunks.append(chunk)
+            bytes_recd = bytes_recd + len(chunk)
+            print("bytes received")
+            print(bytes_recd)
+        
+        data = ''.join(chunks)
 
         ##some_bytes = b'\xC3\xA9'
 
@@ -43,7 +52,7 @@ def threaded(c):
         
         with open(fullfilename, "wb") as binary_file: 
             # Write bytes to file 
-            binary_file.write(jsonString)
+            binary_file.write(chunk)
 
         end_date = datetime.now(timezone.utc).isoformat()
         
