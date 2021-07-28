@@ -2,6 +2,7 @@ Analog to Digital Converter
 ===========================
 
 {IDF_TARGET_ADC1_CH0: default="GPIO 0", esp32="GPIO 36"}
+
 {IDF_TARGET_ADC2_CH7: default="GPIO 0", esp32="GPIO 27"}
 
 
@@ -9,6 +10,7 @@ Overview
 --------
 
 {IDF_TARGET_ADC_DATA_WIDTH:default="12", esp32s2="13"}
+
 {IDF_TARGET_ADC_TOTAL_CHAN:default="20", esp32="18", esp32s2="20", esp32c3="6"}
 
 The {IDF_TARGET_NAME} integrates two {IDF_TARGET_ADC_DATA_WIDTH}-bit SAR (`Successive Approximation Register <https://en.wikipedia.org/wiki/Successive_approximation_ADC>`_) ADCs, supporting a total of {IDF_TARGET_ADC_TOTAL_CHAN} measurement channels (analog enabled pins).
@@ -37,29 +39,13 @@ These channels are supported:
         - 1 channels: GPIO5
 
 
-.. _adc_limitations:
 
-ADC Limitations
----------------
-
-.. note::
-
-    .. only:: esp32
-
-        - Some of the ADC2 pins are used as strapping pins (GPIO 0, 2, 15) thus cannot be used freely. Such is the case in the following official Development Kits:
-        - ESP32 DevKitC: GPIO 0 cannot be used due to external auto program circuits.
-        - ESP-WROVER-KIT: GPIO 0, 2, 4 and 15 cannot be used due to external connections for different purposes.
-        - Since the ADC2 module is also used by the Wi-Fi, only one of them could get the preemption when using together, which means the :cpp:func:`adc2_get_raw` may get blocked until Wi-Fi stops, and vice versa.
+Since the ADC2 module is also used by the Wi-Fi, only one of them could get the preemption when using together, which means the :cpp:func:`adc2_get_raw` may get blocked until Wi-Fi stops, and vice versa.
 
     .. only:: not esp32
 
         - Since the ADC2 module is also used by the Wi-Fi, reading operation of :cpp:func:`adc2_get_raw` may fail between :cpp:func:`esp_wifi_start()` and :cpp:func:`esp_wifi_stop()`. Use the return code to see whether the reading is successful.
 
-    .. only:: esp32c3
-
-        - A specific ADC module can only work under one operating mode at any one time, either Continuous Read Mode or Single Read Mode.
-        - ADC1 and ADC2 can not work under Singel Read Mode simultaneously. One of them will get blocked until another one finishes.
-        - For continuous (DMA) read mode, the ADC sampling frequency (the ``sample_freq_hz`` member of :cpp:type:`adc_digi_config_t`) should be within ``SOC_ADC_SAMPLE_FREQ_THRES_LOW`` and ``SOC_ADC_SAMPLE_FREQ_THRES_HIGH``.
 
 Driver Usage
 ------------
@@ -72,17 +58,16 @@ Each ADC unit supports two work modes, ADC single read mode and ADC continuous (
 
 .. only:: esp32c3
 
-    ADC Continuous (DMA) Read mode
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+## ADC Continuous (DMA) Read mode
 
     Please use the ADC continuous read mode driver as the following steps:
 
-    - Initialize the ADC driver by calling the function :cpp:func:`adc_digi_initialize`.
-    - Initialize the ADC controller by calling the function :cpp:func:`adc_digi_controller_config`.
-    - Start the ADC continuous reading by calling the function :cpp:func:`adc_digi_start`.
-    - After starting the ADC, you can get the ADC reading result by calling the function :cpp:func:`adc_digi_read_bytes`. Before stopping the ADC (by calling :cpp:func:`adc_digi_stop`), the driver will keep converting the analog data to digital data.
-    - Stop the ADC reading by calling the function :cpp:func:`adc_digi_stop`.
-    - Deinitialize the ADC driver by calling the function :cpp:func:`adc_digi_deinitialize`.
+    Initialize the ADC driver by calling the function :cpp:func:`adc_digi_initialize`.
+    Initialize the ADC controller by calling the function :cpp:func:`adc_digi_controller_config`.
+    Start the ADC continuous reading by calling the function :cpp:func:`adc_digi_start`.
+    After starting the ADC, you can get the ADC reading result by calling the function :cpp:func:`adc_digi_read_bytes`. Before stopping the ADC (by calling :cpp:func:`adc_digi_stop`), the driver will keep converting the analog data to digital data.
+    Stop the ADC reading by calling the function :cpp:func:`adc_digi_stop`.
+    Deinitialize the ADC driver by calling the function :cpp:func:`adc_digi_deinitialize`.
 
     .. note:: See :ref:`adc_limitations` for the limitation of using ADC continuous (DMA) read mode.
 
