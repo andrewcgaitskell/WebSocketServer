@@ -27,18 +27,28 @@ def threaded(c):
         chunks = []
         bytes_recd = 0
         MSGLEN = 205344773832
-        while bytes_recd < MSGLEN:
-            ##chunk = c.recv(MSGLEN - bytes_recd)
-            chunk = c.recv(1024)
-            #if chunk == '':
-            #    raise RuntimeError("socket connection broken")
-            chunks.append(chunk)
-            bytes_recd = bytes_recd + len(chunk)
-            ##print("bytes received")
-            print(bytes_recd)
+        #while bytes_recd < MSGLEN:
+        #    ##chunk = c.recv(MSGLEN - bytes_recd)
+        #    chunk = c.recv(1024)
+        #    #if chunk == '':
+        #    #    raise RuntimeError("socket connection broken")
+        #    chunks.append(chunk)
+        #    bytes_recd = bytes_recd + len(chunk)
+        #    ##print("bytes received")
+        #    print(bytes_recd)
         
-        data = ''.join(chunks)
-        print("total bytes received :" + bytes_recd)
+        fragments = []
+        
+        while True: 
+            chunk = s.recv(10000)
+            if not chunk: 
+                break
+            fragments.append(chunk)
+
+        ##print "".join(fragments)
+        
+        data = ''.join(fragments)
+        ##print("total bytes received :" + bytes_recd)
         ##some_bytes = b'\xC3\xA9'
 
 
