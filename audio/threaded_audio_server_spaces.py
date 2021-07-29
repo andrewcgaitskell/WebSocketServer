@@ -41,9 +41,10 @@ def threaded(c):
         
         while True: 
             chunk = c.recv(10000)
+            chunk_byte = byte(chunk)
             if not chunk: 
                 break
-            fragments.append(chunk)
+            fragments.append(chunk_byte)
 
         ##print "".join(fragments)
         
