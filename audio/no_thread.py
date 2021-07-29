@@ -50,7 +50,7 @@ def Main():
     # a forever loop until client wants to exit
     while True:
         main_loop = main_loop + 1
-        print("main loop",main_loop)
+        ##print("main loop",main_loop)
         
         MSGLEN = 2048
         fragments = b''
@@ -69,7 +69,7 @@ def Main():
 
         #bytes_recd = len(data_recd)
         bytes_recd = len(fragments)
-        print(bytes_recd)
+        ##print(bytes_recd)
 
         if bytes_recd >= 131072:
             end_date = datetime.now(timezone.utc).isoformat()
