@@ -71,7 +71,8 @@ def Main():
 
         #bytes_recd = len(data_recd)
         bytes_recd = len(fragments)
-        print(bytes_recd)
+        if bytes_received > 0:
+            print(bytes_recd)
 
         if bytes_recd >= 2048:
             end_date = datetime.now(timezone.utc).isoformat()
