@@ -21,7 +21,7 @@ end_date = datetime.now(timezone.utc).isoformat()
 
 # thread function
 def threaded(c):
-    
+    data_recd = bytearray()
     while True:
 
         #jsonString = bytearray()
@@ -55,6 +55,7 @@ def threaded(c):
             
             
         data_recd += fragments
+         
         
         bytes_recd = len(data_recd)
         
