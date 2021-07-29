@@ -71,7 +71,7 @@ def Main():
 
         #bytes_recd = len(data_recd)
         bytes_recd = len(fragments)
-        if bytes_received > 0:
+        if bytes_recd > 0:
             print(bytes_recd)
 
         if bytes_recd >= 2048:
