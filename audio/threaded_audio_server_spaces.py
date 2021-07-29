@@ -26,7 +26,7 @@ def threaded(c):
         ##Data resides in jsonString variable
         chunks = []
         bytes_recd = 0
-        MSGLEN = 205344773832
+        MSGLEN = 2048
         #while bytes_recd < MSGLEN:
         #    ##chunk = c.recv(MSGLEN - bytes_recd)
         #    chunk = c.recv(1024)
@@ -48,7 +48,7 @@ def threaded(c):
 
             
         arr = bytearray(MSGLEN)
-        max_msg_size = 1024
+        max_msg_size = 2048
         pos = 0
         while pos < msg_len:
             arr[pos:pos+max_msg_size] = sock.recv(max_msg_size)
