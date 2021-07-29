@@ -18,15 +18,16 @@ bytes_recd = 0
 data_recd = bytearray()
 data_recd = b''
 
-start_date = datetime.now(timezone.utc).isoformat()
-end_date = datetime.now(timezone.utc).isoformat()
+
 
 
 
 
 def Main():
     host = ""
-
+    start_date = datetime.now(timezone.utc).isoformat()
+    end_date = datetime.now(timezone.utc).isoformat()
+    
     # reverse a port on your computer
     # in our case it is 12345 but it
     # can be anything
