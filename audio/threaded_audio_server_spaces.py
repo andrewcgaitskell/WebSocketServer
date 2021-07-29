@@ -15,6 +15,8 @@ print_lock = threading.Lock()
 def threaded(c):
     bytes_recd = 0
     data_recd = bytearray()
+    start_date = datetime.now(timezone.utc).isoformat()
+    end_date = datetime.now(timezone.utc).isoformat()
     while True:
 
         #jsonString = bytearray()
