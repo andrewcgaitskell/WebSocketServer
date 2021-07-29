@@ -13,6 +13,7 @@ print_lock = threading.Lock()
 
 # thread function
 def threaded(c):
+    bytes_recd = 0
     while True:
 
         #jsonString = bytearray()
@@ -39,22 +40,23 @@ def threaded(c):
         chunk = bytearray()
         fragments = bytearray()
         
-        #while True: 
-        #    chunk = c.recv(1024)
-        #    chunk_byte = bytes(chunk)
-        #    if not chunk: 
-        #        break
-        #    fragments.append(chunk_byte)
+        while True: 
+            chunk = c.recv(2048)
+            chunk_byte = bytes(chunk)
+            if not chunk: 
+                break
+            fragments.append(chunk_byte)
 
-            
-        arr = bytearray(MSGLEN)
-        max_msg_size = 2048
-        pos = 0
-        while pos < msg_len:
-            arr[pos:pos+max_msg_size] = sock.recv(max_msg_size)
-            pos += max_msg_size
-            print('receiving :',pos)
-        print('message size :', len(arr))
+        #bytes_recd = bytes_recd + len(fragments)
+        
+        #arr = bytearray(MSGLEN)
+        #max_msg_size = 2048
+        #pos = 0
+        #while pos < msg_len:
+        #    arr[pos:pos+max_msg_size] = sock.recv(max_msg_size)
+        #    pos += max_msg_size
+        #    print('receiving :',pos)
+        #print('message size :', len(arr))
         
         ##data = ''.join(fragments)
         ##print("total bytes received :" + bytes_recd)
@@ -70,9 +72,9 @@ def threaded(c):
         myfolder = '/home/andrew_gaitskell/data/audio/'
         fullfilename = myfolder + filename
         
-        #with open(fullfilename, "wb") as binary_file: 
-        #    # Write bytes to file 
-        #    binary_file.write(fragments)
+        with open(fullfilename, "wb") as binary_file: 
+            # Write bytes to file 
+            binary_file.write(fragments)
 
         end_date = datetime.now(timezone.utc).isoformat()
         
