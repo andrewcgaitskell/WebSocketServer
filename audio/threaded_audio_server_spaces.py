@@ -52,7 +52,7 @@ def threaded(c):
 
         data_recd += fragments
         
-        ##print(len(data_recd))
+        print(len(data_recd))
         
         #bytes_recd = bytes_recd + len(fragments)
         
@@ -79,7 +79,7 @@ def threaded(c):
         ##myfolder = '/home/andrew_gaitskell/data/audio/'
         ##fullfilename = myfolder + filename
         
-        if len(data_recd) >= 16777216:
+        if len(data_recd) >= 131072:
             end_date = datetime.now(timezone.utc).isoformat()
             filename = start_date + '_' + end_date + '.bytes'
             folder = '~/data/audio/'
