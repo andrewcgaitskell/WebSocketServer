@@ -13,6 +13,9 @@ print_lock = threading.Lock()
 
 # thread function
 def threaded(c):
+    chunk = bytearray()
+    chunk_byte = bytearray()
+    fragments = bytearray()
     bytes_recd = 0
     data_recd = bytearray()
     start_date = datetime.now(timezone.utc).isoformat()
@@ -38,8 +41,8 @@ def threaded(c):
         #    bytes_recd = bytes_recd + len(chunk)
         #    ##print("bytes received")
         #    print(bytes_recd)
-        chunk = bytearray()
-        fragments = bytearray()
+        fragments[::] = b''
+        chunk[::] = b''
         
         while True: 
             chunk = c.recv(1024)
@@ -51,9 +54,7 @@ def threaded(c):
             
         data_recd += fragments
         
-        
-        
-        bytes_recd = bytes_recd + len(fragments)
+        bytes_recd = len(data_recd)
         
         print(bytes_recd)
         #arr = bytearray(MSGLEN)
@@ -79,7 +80,7 @@ def threaded(c):
         ##myfolder = '/home/andrew_gaitskell/data/audio/'
         ##fullfilename = myfolder + filename
         
-        if len(data_recd) >= 131072:
+        if bytes_recd >= 131072:
             end_date = datetime.now(timezone.utc).isoformat()
             filename = start_date + '_' + end_date + '.bytes'
             folder = '~/data/audio/'
