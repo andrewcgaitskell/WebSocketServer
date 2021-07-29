@@ -11,15 +11,17 @@ from datetime import datetime, timezone
 
 print_lock = threading.Lock()
 
+chunk = bytearray()
+chunk_byte = bytearray()
+fragments = bytearray()
+bytes_recd = 0
+data_recd = bytearray()
+start_date = datetime.now(timezone.utc).isoformat()
+end_date = datetime.now(timezone.utc).isoformat()
+
 # thread function
 def threaded(c):
-    chunk = bytearray()
-    chunk_byte = bytearray()
-    fragments = bytearray()
-    bytes_recd = 0
-    data_recd = bytearray()
-    start_date = datetime.now(timezone.utc).isoformat()
-    end_date = datetime.now(timezone.utc).isoformat()
+    
     while True:
 
         #jsonString = bytearray()
