@@ -52,7 +52,7 @@ def threaded(c):
         
         with open(fullfilename, "wb") as binary_file: 
             # Write bytes to file 
-            binary_file.write(chunks)
+            binary_file.write(data)
 
         end_date = datetime.now(timezone.utc).isoformat()
         
