@@ -45,7 +45,7 @@ def threaded(c):
             chunk_byte = bytes(chunk)
             if not chunk: 
                 break
-            fragments.append(chunk_byte)
+            fragments += chunk_byte
 
         #bytes_recd = bytes_recd + len(fragments)
         
