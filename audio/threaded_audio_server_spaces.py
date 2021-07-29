@@ -39,14 +39,21 @@ def threaded(c):
         chunk = bytearray()
         fragments = bytearray()
         
-        while True: 
-            chunk = c.recv(1024)
-            chunk_byte = bytes(chunk)
-            if not chunk: 
-                break
-            fragments.append(chunk_byte)
+        #while True: 
+        #    chunk = c.recv(1024)
+        #    chunk_byte = bytes(chunk)
+        #    if not chunk: 
+        #        break
+        #    fragments.append(chunk_byte)
 
-        ##print "".join(fragments)
+            
+        arr = bytearray(MSGLEN)
+        max_msg_size = 1024
+        pos = 0
+        while pos < msg_len:
+            arr[pos:pos+max_msg_size] = sock.recv(max_msg_size)
+            pos += max_msg_size
+        print('message size " , len(arr))
         
         ##data = ''.join(fragments)
         ##print("total bytes received :" + bytes_recd)
@@ -62,15 +69,15 @@ def threaded(c):
         myfolder = '/home/andrew_gaitskell/data/audio/'
         fullfilename = myfolder + filename
         
-        with open(fullfilename, "wb") as binary_file: 
-            # Write bytes to file 
-            binary_file.write(fragments)
+        #with open(fullfilename, "wb") as binary_file: 
+        #    # Write bytes to file 
+        #    binary_file.write(fragments)
 
         end_date = datetime.now(timezone.utc).isoformat()
         
         newfilename = fullfilename + '_' + end_date + '.bytes'
         
-        os.rename(fullfilename, newfilename)
+        #os.rename(fullfilename, newfilename)
         
     # connection closed
     c.close()
