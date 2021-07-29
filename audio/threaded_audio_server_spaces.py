@@ -37,7 +37,7 @@ def threaded(c):
             ##print(bytes_recd)
         
         data = ''.join(chunks)
-
+        print("total bytes received :" + bytes_recd)
         ##some_bytes = b'\xC3\xA9'
 
 
