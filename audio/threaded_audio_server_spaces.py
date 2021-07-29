@@ -92,7 +92,8 @@ def Main():
     port = 5010
    
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    ##s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    s.setsockopt(socket.SO_REUSEADDR)
     s.bind((host, port))
     ##s.settimeout(2) 
     print("socket binded to port", port)
