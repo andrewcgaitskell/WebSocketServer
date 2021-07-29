@@ -47,7 +47,7 @@ def threaded(c):
 
         ##print "".join(fragments)
         
-        data = ''.join(fragments)
+        ##data = ''.join(fragments)
         ##print("total bytes received :" + bytes_recd)
         ##some_bytes = b'\xC3\xA9'
 
@@ -63,7 +63,7 @@ def threaded(c):
         
         with open(fullfilename, "wb") as binary_file: 
             # Write bytes to file 
-            binary_file.write(data)
+            binary_file.write(fragments)
 
         end_date = datetime.now(timezone.utc).isoformat()
         
