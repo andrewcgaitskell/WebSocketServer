@@ -35,7 +35,7 @@ def threaded(c):
             chunks.append(chunk)
             bytes_recd = bytes_recd + len(chunk)
             ##print("bytes received")
-            ##print(bytes_recd)
+            print(bytes_recd)
         
         data = ''.join(chunks)
         print("total bytes received :" + bytes_recd)
