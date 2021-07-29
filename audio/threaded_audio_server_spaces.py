@@ -33,8 +33,8 @@ def threaded(c):
                 raise RuntimeError("socket connection broken")
             chunks.append(chunk)
             bytes_recd = bytes_recd + len(chunk)
-            print("bytes received")
-            print(bytes_recd)
+            ##print("bytes received")
+            ##print(bytes_recd)
         
         data = ''.join(chunks)
 
@@ -52,7 +52,7 @@ def threaded(c):
         
         with open(fullfilename, "wb") as binary_file: 
             # Write bytes to file 
-            binary_file.write(chunk)
+            binary_file.write(chunks)
 
         end_date = datetime.now(timezone.utc).isoformat()
         
