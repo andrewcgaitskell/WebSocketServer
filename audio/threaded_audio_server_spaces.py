@@ -14,6 +14,7 @@ print_lock = threading.Lock()
 # thread function
 def threaded(c):
     bytes_recd = 0
+    data_recd = bytearray()
     while True:
 
         #jsonString = bytearray()
@@ -47,6 +48,10 @@ def threaded(c):
                 break
             fragments += chunk_byte
 
+        data_recd += fragments
+        
+        
+        
         #bytes_recd = bytes_recd + len(fragments)
         
         #arr = bytearray(MSGLEN)
@@ -66,19 +71,27 @@ def threaded(c):
         # Open in "wb" mode to 
         # write a new file, or  
         # "ab" mode to append 
-        start_date = datetime.now(timezone.utc).isoformat()
-        filename = start_date
-        folder = '~/data/audio/'
-        myfolder = '/home/andrew_gaitskell/data/audio/'
-        fullfilename = myfolder + filename
+        ##start_date = datetime.now(timezone.utc).isoformat()
+        ##filename = start_date
+        ##folder = '~/data/audio/'
+        ##myfolder = '/home/andrew_gaitskell/data/audio/'
+        ##fullfilename = myfolder + filename
         
-        with open(fullfilename, "wb") as binary_file: 
-            # Write bytes to file 
-            binary_file.write(fragments)
+        if len(data_recd) >= 16777216;
+            end_date = datetime.now(timezone.utc).isoformat()
+            filename = start_date + '_' + end_date + '.bytes'
+            folder = '~/data/audio/'
+            myfolder = '/home/andrew_gaitskell/data/audio/'
+            fullfilename = myfolder + filename
+            with open(fullfilename, "wb") as binary_file: 
+                # Write bytes to file 
+                binary_file.write(data_recd)
+            data_recd = bytearray()
+            start_date = datetime.now(timezone.utc).isoformat()
 
-        end_date = datetime.now(timezone.utc).isoformat()
+        ##end_date = datetime.now(timezone.utc).isoformat()
         
-        newfilename = fullfilename + '_' + end_date + '.bytes'
+        ##newfilename = fullfilename + '_' + end_date + '.bytes'
         
         #os.rename(fullfilename, newfilename)
         
