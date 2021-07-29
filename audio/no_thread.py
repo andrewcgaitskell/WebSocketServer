@@ -64,15 +64,16 @@ def Main():
             if not chunk: 
                 break
             fragments += chunk_byte
-
+            bytes_recd = len(fragments)
+            if bytes_recd > 131072:
+                print(bytes_recd)
+                break
 
         data_recd += fragments
 
 
         #bytes_recd = len(data_recd)
-        bytes_recd = len(fragments)
-        if bytes_recd > 0:
-            print(bytes_recd)
+        
 
         if bytes_recd >= 2048:
             end_date = datetime.now(timezone.utc).isoformat()
