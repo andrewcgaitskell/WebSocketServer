@@ -41,18 +41,17 @@ def Main():
     # put the socket into listening mode
     s.listen(5)
     print("socket is listening")
-
+    
+    main_loop = 0
+    c, addr = s.accept()
+    print_lock.acquire()
+    print('Connected to :', addr[0], ':', addr[1])
+    data_recd = bytearray()
     # a forever loop until client wants to exit
     while True:
-
-        # establish connection with client
-        c, addr = s.accept()
-
-        # lock acquired by client
-        print_lock.acquire()
-        print('Connected to :', addr[0], ':', addr[1])
-
-        data_recd = bytearray()
+        main_loop = main_loop + 1
+        print("main loop",main_loop)
+        
         while True:
             MSGLEN = 2048
             fragments = b''
@@ -85,7 +84,7 @@ def Main():
                 data_recd = b''
                 start_date = datetime.now(timezone.utc).isoformat()
                 bytes_recd = 0
-
+    c.slose()
     s.close()
 
     
