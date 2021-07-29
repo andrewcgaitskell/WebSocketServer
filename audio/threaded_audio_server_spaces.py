@@ -40,7 +40,7 @@ def threaded(c):
         fragments = []
         
         while True: 
-            chunk = s.recv(10000)
+            chunk = c.recv(10000)
             if not chunk: 
                 break
             fragments.append(chunk)
