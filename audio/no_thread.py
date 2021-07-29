@@ -47,6 +47,7 @@ def Main():
     print_lock.acquire()
     print('Connected to :', addr[0], ':', addr[1])
     data_recd = bytearray()
+    end_date = datetime.now(timezone.utc).isoformat()
     # a forever loop until client wants to exit
     while True:
         main_loop = main_loop + 1
