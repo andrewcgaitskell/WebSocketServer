@@ -36,8 +36,8 @@ def threaded(c):
         #    bytes_recd = bytes_recd + len(chunk)
         #    ##print("bytes received")
         #    print(bytes_recd)
-        
-        fragments = []
+        chunk = bytearray()
+        fragments = bytearray()
         
         while True: 
             chunk = c.recv(10000)
