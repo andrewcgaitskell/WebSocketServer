@@ -39,7 +39,7 @@ def Main():
     print("socket binded to port", port)
 
     # put the socket into listening mode
-    s.listen(5)
+    s.listen(1)
     print("socket is listening")
     
     main_loop = 0
