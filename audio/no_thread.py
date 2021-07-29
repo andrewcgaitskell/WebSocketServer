@@ -69,9 +69,9 @@ def Main():
 
         #bytes_recd = len(data_recd)
         bytes_recd = len(fragments)
-        ##print(bytes_recd)
+        print(bytes_recd)
 
-        if bytes_recd >= 131072:
+        if bytes_recd >= 2048:
             end_date = datetime.now(timezone.utc).isoformat()
             filename = start_date + '_' + end_date + '.bytes'
             folder = '~/data/audio/'
