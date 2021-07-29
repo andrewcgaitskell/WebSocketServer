@@ -52,7 +52,7 @@ def threaded(c):
 
         data_recd += fragments
         
-        
+        print(len(data_recd))
         
         #bytes_recd = bytes_recd + len(fragments)
         
