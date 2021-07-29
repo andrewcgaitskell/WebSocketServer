@@ -58,3 +58,10 @@ Start up local Jupyter workbook
     
     jupyter notebook
     
+## Clearing Port
+
+sudo fuser -k 5010/tcp
+
+
+
+    
