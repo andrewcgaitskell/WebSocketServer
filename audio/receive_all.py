@@ -56,7 +56,7 @@ def recv_end(the_socket):
 
 def recv_size(the_socket):
     #data length is packed into 4 bytes
-    total_len=0;total_data=[];size=sys.maxint
+    total_len=0;total_data=[];size=sys.maxsize
     size_data=sock_data='';recv_size=8192
     while total_len<size:
         sock_data=the_socket.recv(recv_size)
