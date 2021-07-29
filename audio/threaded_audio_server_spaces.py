@@ -79,7 +79,7 @@ def threaded(c):
         ##myfolder = '/home/andrew_gaitskell/data/audio/'
         ##fullfilename = myfolder + filename
         
-        if len(data_recd) >= 16777216;
+        if len(data_recd) >= 16777216:
             end_date = datetime.now(timezone.utc).isoformat()
             filename = start_date + '_' + end_date + '.bytes'
             folder = '~/data/audio/'
