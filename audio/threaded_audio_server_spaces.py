@@ -28,8 +28,6 @@ def threaded(c):
         #    jsonString.extend(packet)
 
         ##Data resides in jsonString variable
-        chunks = []
-        bytes_recd = 0
         MSGLEN = 2048
         #while bytes_recd < MSGLEN:
         #    ##chunk = c.recv(MSGLEN - bytes_recd)
@@ -49,13 +47,15 @@ def threaded(c):
             if not chunk: 
                 break
             fragments += chunk_byte
-
+            
+            
         data_recd += fragments
         
-        print(len(data_recd))
         
-        #bytes_recd = bytes_recd + len(fragments)
         
+        bytes_recd = bytes_recd + len(fragments)
+        
+        print(bytes_recd)
         #arr = bytearray(MSGLEN)
         #max_msg_size = 2048
         #pos = 0
@@ -90,6 +90,7 @@ def threaded(c):
                 binary_file.write(data_recd)
             data_recd = bytearray()
             start_date = datetime.now(timezone.utc).isoformat()
+            bytes_recd = 0
 
         ##end_date = datetime.now(timezone.utc).isoformat()
         
