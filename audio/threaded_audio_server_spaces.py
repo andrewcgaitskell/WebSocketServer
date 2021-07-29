@@ -41,8 +41,8 @@ def threaded(c):
         #    bytes_recd = bytes_recd + len(chunk)
         #    ##print("bytes received")
         #    print(bytes_recd)
-        fragments[::] = b''
-        chunk[::] = b''
+        fragments = b''
+        chunk = b''
         
         while True: 
             chunk = c.recv(1024)
