@@ -52,38 +52,37 @@ def Main():
         main_loop = main_loop + 1
         print("main loop",main_loop)
         
-        while True:
-            MSGLEN = 2048
-            fragments = b''
-            chunk = b''
+        MSGLEN = 2048
+        fragments = b''
+        chunk = b''
 
-            while True: 
-                chunk = c.recv(1024)
-                chunk_byte = bytes(chunk)
-                if not chunk: 
-                    break
-                fragments += chunk_byte
-
-
-            data_recd += fragments
+        while True: 
+            chunk = c.recv(1024)
+            chunk_byte = bytes(chunk)
+            if not chunk: 
+                break
+            fragments += chunk_byte
 
 
-            bytes_recd = len(data_recd)
+        data_recd += fragments
 
-            print(bytes_recd)
 
-            if bytes_recd >= 131072:
-                end_date = datetime.now(timezone.utc).isoformat()
-                filename = start_date + '_' + end_date + '.bytes'
-                folder = '~/data/audio/'
-                myfolder = '/home/andrew_gaitskell/data/audio/'
-                fullfilename = myfolder + filename
-                with open(fullfilename, "wb") as binary_file: 
-                    # Write bytes to file 
-                    binary_file.write(data_recd)
-                data_recd = b''
-                start_date = datetime.now(timezone.utc).isoformat()
-                bytes_recd = 0
+        bytes_recd = len(data_recd)
+
+        print(bytes_recd)
+
+        if bytes_recd >= 131072:
+            end_date = datetime.now(timezone.utc).isoformat()
+            filename = start_date + '_' + end_date + '.bytes'
+            folder = '~/data/audio/'
+            myfolder = '/home/andrew_gaitskell/data/audio/'
+            fullfilename = myfolder + filename
+            with open(fullfilename, "wb") as binary_file: 
+                # Write bytes to file 
+                binary_file.write(data_recd)
+            data_recd = b''
+            start_date = datetime.now(timezone.utc).isoformat()
+            bytes_recd = 0
     c.slose()
     s.close()
 
