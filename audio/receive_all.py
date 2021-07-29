@@ -78,7 +78,9 @@ def recv_size(the_socket):
 ##############
 def start_server(recv_type=''):
     sock=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+    sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     sock.bind(('',Port))
+    
     sock.listen(5)
     print('started on',Port)
     while True:
