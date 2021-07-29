@@ -26,7 +26,7 @@ def threaded(c):
         ##Data resides in jsonString variable
         chunks = []
         bytes_recd = 0
-        MSGLEN = 1024
+        MSGLEN = 205344773832
         while bytes_recd < MSGLEN:
             chunk = c.recv(MSGLEN - bytes_recd)
             if chunk == '':
