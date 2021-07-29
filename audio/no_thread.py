@@ -84,7 +84,7 @@ def Main():
                 start_date = datetime.now(timezone.utc).isoformat()
                 bytes_recd = 0
 
-      s.close()
+    s.close()
 
     
 if __name__ == '__main__':
