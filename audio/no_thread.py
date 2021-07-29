@@ -67,8 +67,8 @@ def Main():
         data_recd += fragments
 
 
-        bytes_recd = len(data_recd)
-
+        #bytes_recd = len(data_recd)
+        bytes_recd = len(fragments)
         print(bytes_recd)
 
         if bytes_recd >= 131072:
