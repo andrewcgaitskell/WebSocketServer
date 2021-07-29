@@ -16,6 +16,8 @@ chunk_byte = bytearray()
 fragments = bytearray()
 bytes_recd = 0
 data_recd = bytearray()
+data_recd = b''
+
 start_date = datetime.now(timezone.utc).isoformat()
 end_date = datetime.now(timezone.utc).isoformat()
 
@@ -80,7 +82,7 @@ def Main():
                 with open(fullfilename, "wb") as binary_file: 
                     # Write bytes to file 
                     binary_file.write(data_recd)
-                data_recd = bytearray()
+                data_recd = b''
                 start_date = datetime.now(timezone.utc).isoformat()
                 bytes_recd = 0
 
