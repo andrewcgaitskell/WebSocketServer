@@ -40,7 +40,7 @@ def threaded(c):
         fragments = bytearray()
         
         while True: 
-            chunk = c.recv(10000)
+            chunk = c.recv(1024)
             chunk_byte = bytes(chunk)
             if not chunk: 
                 break
