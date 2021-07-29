@@ -53,6 +53,7 @@ def threaded(c):
         while pos < msg_len:
             arr[pos:pos+max_msg_size] = sock.recv(max_msg_size)
             pos += max_msg_size
+            print('receiving :',pos)
         print('message size :', len(arr))
         
         ##data = ''.join(fragments)
