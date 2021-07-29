@@ -7,7 +7,7 @@ Port=5010
 
 #assume a socket disconnect (data returned is empty string) means  all data was #done being sent.
 def recv_basic(the_socket):
-    total_data=[]
+    total_data=bytearray()
     while True:
         data = the_socket.recv(8192)
         if not data: break
@@ -17,7 +17,7 @@ def recv_basic(the_socket):
     
 def recv_timeout(the_socket,timeout=2):
     the_socket.setblocking(0)
-    total_data=[];data='';begin=time.time()
+    total_data=bytearray();data=bytearray();begin=time.time()
     while 1:
         #if you got some data, then break after wait sec
         if total_data and time.time()-begin>timeout:
@@ -36,33 +36,16 @@ def recv_timeout(the_socket,timeout=2):
             pass
     return ''.join(total_data)
 
-End='something useable as an end marker'
-def recv_end(the_socket):
-    total_data=[];data=''
-    while True:
-            data=the_socket.recv(8192)
-            if End in data:
-                total_data.append(data[:data.find(End)])
-                break
-            total_data.append(data)
-            if len(total_data)>1:
-                #check if end_of_data was split
-                last_pair=total_data[-2]+total_data[-1]
-                if End in last_pair:
-                    total_data[-2]=last_pair[:last_pair.find(End)]
-                    total_data.pop()
-                    break
-    return ''.join(total_data)
-
 def recv_size(the_socket):
     #data length is packed into 4 bytes
-    total_len=0;total_data=[];size=sys.maxsize
-    size_data=sock_data='';recv_size=8192
+    total_len=0;total_data=bytearray();size=sys.maxsize
+    size_data=bytearray()
+    sock_data='';recv_size=8192
     while total_len<size:
         sock_data=the_socket.recv(recv_size)
         if not total_data:
             if len(sock_data)>4:
-                size_data+=sock_data
+                size_data.append(sock_data)
                 size=struct.unpack('>i', size_data[:4])[0]
                 recv_size=size
                 if recv_size>524288:recv_size=524288
