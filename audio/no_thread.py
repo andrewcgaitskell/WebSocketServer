@@ -60,10 +60,11 @@ def Main():
 
         while True: 
             chunk = c.recv(1024)
-            chunk_byte = bytes(chunk)
+            #chunk_byte = bytes(chunk)
             if not chunk: 
                 break
-            fragments += chunk_byte
+            #fragments += chunk_byte
+            fragments += chunk
             bytes_recd = len(fragments)
             if bytes_recd > 131072:
                 print(bytes_recd)
