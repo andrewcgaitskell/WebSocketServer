@@ -67,26 +67,23 @@ def Main():
             bytes_recd = len(fragments)
             if bytes_recd > 131072:
                 print(bytes_recd)
-                break
+                #break
 
-        data_recd += fragments
+                #data_recd += fragments
 
+                #bytes_recd = len(data_recd)
 
-        #bytes_recd = len(data_recd)
-        
-
-        if bytes_recd >= 2048:
-            end_date = datetime.now(timezone.utc).isoformat()
-            filename = start_date + '_' + end_date + '.bytes'
-            folder = '~/data/audio/'
-            myfolder = '/home/andrew_gaitskell/data/audio/'
-            fullfilename = myfolder + filename
-            with open(fullfilename, "wb") as binary_file: 
-                # Write bytes to file 
-                binary_file.write(data_recd)
-            data_recd = b''
-            start_date = datetime.now(timezone.utc).isoformat()
-            bytes_recd = 0
+                end_date = datetime.now(timezone.utc).isoformat()
+                filename = start_date + '_' + end_date + '.bytes'
+                folder = '~/data/audio/'
+                myfolder = '/home/andrew_gaitskell/data/audio/'
+                fullfilename = myfolder + filename
+                with open(fullfilename, "wb") as binary_file: 
+                    # Write bytes to file 
+                    binary_file.write(fragments)
+                data_recd = b''
+                start_date = datetime.now(timezone.utc).isoformat()
+                bytes_recd = 0
     c.slose()
     s.close()
 
