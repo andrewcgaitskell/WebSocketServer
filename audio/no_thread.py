@@ -11,9 +11,8 @@ from datetime import datetime, timezone
 
 print_lock = threading.Lock()
 
-chunk = bytearray()
-chunk_byte = bytearray()
-fragments = bytearray()
+chunk = [0] * 1024
+fragments = [0] * 131072
 bytes_recd = 0
 data_recd = bytearray()
 data_recd = b''
@@ -47,7 +46,6 @@ def Main():
     c, addr = s.accept()
     print_lock.acquire()
     print('Connected to :', addr[0], ':', addr[1])
-    data_recd = bytearray()
     end_date = datetime.now(timezone.utc).isoformat()
     # a forever loop until client wants to exit
     while True:
@@ -79,13 +77,15 @@ def Main():
                 folder = '~/data/audio/'
                 myfolder = '/home/andrew_gaitskell/data/audio/'
                 fullfilename = myfolder + filename
-                with open(fullfilename, "wb") as binary_file: 
-                    # Write bytes to file 
-                    binary_file.write(fragments)
-                data_recd = b''
+                #with open(fullfilename, "wb") as binary_file: 
+                #    # Write bytes to file 
+                #    binary_file.write(fragments)
+                with open('fullfilename, 'w') as filehandle:
+                    for listitem in fragments:
+                        filehandle.write('%s\n' % listitem)
                 start_date = datetime.now(timezone.utc).isoformat()
                 bytes_recd = 0
-                fragments = b''
+                fragments = [0] * 131072
     c.slose()
     s.close()
 
