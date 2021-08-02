@@ -79,7 +79,7 @@ def Main():
                         filehandle.write('%s\n' % listitem)
                 start_date = datetime.now(timezone.utc).isoformat()
                 bytes_recd = 0
-                fragments = [0] * 131072
+                fragments = [0] * 1
     c.slose()
     s.close()
 
