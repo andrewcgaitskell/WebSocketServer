@@ -84,6 +84,7 @@ def Main():
                 data_recd = b''
                 start_date = datetime.now(timezone.utc).isoformat()
                 bytes_recd = 0
+                fragments = b''
     c.slose()
     s.close()
 
