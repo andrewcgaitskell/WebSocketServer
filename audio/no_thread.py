@@ -12,7 +12,7 @@ from datetime import datetime, timezone
 print_lock = threading.Lock()
 
 chunk = [0] * 1024
-fragments = [0] * 131072
+fragments = [0] * 1
 bytes_recd = 0
 
 
@@ -47,8 +47,8 @@ def Main():
         ##print("main loop",main_loop)
         
         MSGLEN = 2048
-        fragments = b''
-        chunk = b''
+        fragments = [0] * 1
+        chunk = [0] * 1
 
         while True: 
             chunk = c.recv(1024)
