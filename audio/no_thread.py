@@ -14,12 +14,6 @@ print_lock = threading.Lock()
 chunk = [0] * 1024
 fragments = [0] * 131072
 bytes_recd = 0
-data_recd = bytearray()
-data_recd = b''
-
-
-
-
 
 
 def Main():
@@ -80,7 +74,7 @@ def Main():
                 #with open(fullfilename, "wb") as binary_file: 
                 #    # Write bytes to file 
                 #    binary_file.write(fragments)
-                with open('fullfilename, 'w') as filehandle:
+                with open(fullfilename, "w") as filehandle:
                     for listitem in fragments:
                         filehandle.write('%s\n' % listitem)
                 start_date = datetime.now(timezone.utc).isoformat()
