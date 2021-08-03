@@ -47,8 +47,8 @@ def Main():
         ##print("main loop",main_loop)
         
         MSGLEN = 2048
-        fragments = b''
-        chunk = b''
+        fragments = bytearray()
+        chunk = bytearray()
 
         while True: 
             chunk = c.recv(1024)
@@ -79,7 +79,7 @@ def Main():
                 #        filehandle.write('%s\n' % listitem)
                 start_date = datetime.now(timezone.utc).isoformat()
                 bytes_recd = 0
-                fragments = b''
+                fragments = bytearray()
     c.slose()
     s.close()
 
