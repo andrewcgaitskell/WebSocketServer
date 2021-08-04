@@ -58,7 +58,7 @@ def Main():
             #fragments += chunk_byte
             fragments += chunk
             bytes_recd = len(fragments)
-            if bytes_recd > 131072:
+            if bytes_recd > 1048576:
                 print(bytes_recd)
                 #break
 
