@@ -25,11 +25,6 @@ uint16_t samples[SAMPLEBLOCK];
 
 ///////////////////////////////////////
 
-// Use WiFiClient class to create TCP connections
-WiFiClient client;
-const int httpPort = 5010;
-
-
 void setup()
 {
     Serial.begin(115200);
@@ -58,32 +53,13 @@ void setup()
     setupI2S();
     Serial.println("Audio input setup completed");
     delay(1000);
-    Serial.print("connecting to ");
-    Serial.println(host);
-    
-    //if (client.connect(host, httpPort)) {
-    //  Serial.println("connected to server");
-    //}
+
 }
 
 int value = 0;
 
 void loop()
 {
-    
-    //delay(10f);
-    
-    //Serial.print("connecting to ");
-    //Serial.println(host);
-
-    // Use WiFiClient class to create TCP connections
-    
-    //if (!client.connect(host, httpPort)) {
-    //    Serial.println("connection failed, reconnecting again");
-    //    client.connect(host, httpPort);
-    //    return;
-    //}
-
     size_t bytesRead = 0;
     i2s_read(I2S_PORT, 
             (void*)samples, 
@@ -95,19 +71,13 @@ void loop()
               Serial.printf("Could only read %u bytes of %u in FillBufferI2S()\n", bytesRead, sizeof(samples));
              // return;
           }
-
-    //client.write(samples,sizeof(samples));
-    Serial.print("Sample Size :");
-    Serial.print(sizeof(samples));
-    Serial.println();
-    //client.write((const uint8_t *) samples, sizeof(samples));
-    //client.printf((const uint8_t *) samples, sizeof(samples));
-    //client.flush();
                                       
     //for (uint16_t i = 0; i < ARRAYSIZE(samples); i++) {
-    //     // samples[i] &FFF
-    //     Serial.printf("%7d,",offset-samples[i]);  
-    //    }
+    //      //Serial.printf("%7d,",samples[i]);
+    //      Serial.printf("%7d,",offset-samples[i]); 
+    //      Serial.println();}
+
+    Serial.println(ARRAYSIZE(samples));
     }
 
 
