@@ -21,7 +21,7 @@ serv_sock.bind(('', 5010))
 
 # Turn server socket into listening mode.
 serv_sock.listen(10)
-
+index = 0
 while True:
     # Accept new connections in an infinite loop.
     client_sock, client_addr = serv_sock.accept()
@@ -41,7 +41,7 @@ while True:
             sensorvalue = sensorbytes[1] * 256 + sensorbytes[2]
             ##sensorvalue = int.from_bytes(sensorcontet, byteorder='big')
             print("band:", band, " sensor value:",sensorvalue)
-           
+            index = index + 1
             sqlcmnd = f"INSERT INTO public.raw_sensordata(index, millitime, band, value) VALUES ({index}, EXTRACT(EPOCH FROM (SELECT NOW())) * 1000, {band}, {sensorvalue})"
     
             #sqlcmnd = 'COPY "raw_CovidTrackerGantt" FROM \''+ filename + '\' DELIMITER \',\' CSV;'
