@@ -8,7 +8,7 @@ import psycopg2
 import os
 
 cwd = os.getcwd()
-sqlfilename = cwd + '/CreateRawTable.sql'
+sqlfilename = cwd + '/createsensortable.sql'
 f = open(sqlfilename, "r")
 fs = f.read()
 
@@ -23,5 +23,5 @@ finally:
     connection.close()
  
 sqlcmnd = 'COPY "raw_CovidTrackerGantt" FROM \''+ filename + '\' DELIMITER \',\' CSV;'
-with engine.connect().execution_options(autocommit=True) as con:
-  con.execute(sqlcmnd)
+#with engine.connect().execution_options(autocommit=True) as con:
+#  con.execute(sqlcmnd)
