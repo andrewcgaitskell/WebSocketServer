@@ -19,7 +19,7 @@ while True:
     chunks = []
     while True:
         # Keep reading while the client is writing.
-        data = client_sock.recv(2048)
+        data = client_sock.recv(1)
         if not data:
             # Client is done with sending.
             break
