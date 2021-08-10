@@ -25,6 +25,8 @@ while True:
  
         else:
             print(content)
+            sensorcontet = content[0:1]
+            sensorvalue = int.from_bytes(sensorcontet, byteorder='big')
     #print(chunks)
     #client_sock.sendall(b''.join(chunks))
     client_sock.close()
