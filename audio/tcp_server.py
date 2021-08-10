@@ -35,7 +35,7 @@ while True:
            break
  
         else:
-            print(content)
+            ##print(content)
             sensorbytes = list(content)
             band = sensorbytes[0]
             sensorvalue = sensorbytes[1] * 256 + sensorbytes[2]
