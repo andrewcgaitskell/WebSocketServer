@@ -26,9 +26,10 @@ while True:
         else:
             print(content)
             sensorbytes = list(content)
-            sensorvalue = sensorbytes[0] * 256 + sensorbytes[1]
+            band = sensorbytes[0]
+            sensorvalue = sensorbytes[1] * 256 + sensorbytes[2]
             ##sensorvalue = int.from_bytes(sensorcontet, byteorder='big')
-            print("sensor value:",sensorvalue)
+            print("band:", band, " sensor value:",sensorvalue)
     #print(chunks)
     #client_sock.sendall(b''.join(chunks))
     client_sock.close()
