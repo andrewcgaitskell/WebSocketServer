@@ -23,9 +23,9 @@ finally:
     connection.close()
 
 int index = 1
-band = 1
-value = 1
-sqlcmnd = "INSERT INTO public.raw_sensordata(index, millitime, band, value) VALUES ($d, EXTRACT(EPOCH FROM (SELECT NOW())) * 1000, $d, $d)"; % (index,band,value)
+band = 123
+value = 456
+sqlcmnd = "INSERT INTO public.raw_sensordata(index, millitime, band, value) VALUES ($d, EXTRACT(EPOCH FROM (SELECT NOW())) * 1000, $d, $d)" % (index,band,value)
     
 #sqlcmnd = 'COPY "raw_CovidTrackerGantt" FROM \''+ filename + '\' DELIMITER \',\' CSV;'
 with engine.connect().execution_options(autocommit=True) as con:
