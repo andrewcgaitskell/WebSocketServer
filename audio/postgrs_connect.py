@@ -22,6 +22,6 @@ finally:
     connection.commit()
     connection.close()
  
-sqlcmnd = 'COPY "raw_CovidTrackerGantt" FROM \''+ filename + '\' DELIMITER \',\' CSV;'
+#sqlcmnd = 'COPY "raw_CovidTrackerGantt" FROM \''+ filename + '\' DELIMITER \',\' CSV;'
 #with engine.connect().execution_options(autocommit=True) as con:
 #  con.execute(sqlcmnd)
