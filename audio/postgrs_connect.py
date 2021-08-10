@@ -22,7 +22,7 @@ finally:
     connection.commit()
     connection.close()
 
-int index = 1
+index = 1
 band = 123
 value = 456
 sqlcmnd = "INSERT INTO public.raw_sensordata(index, millitime, band, value) VALUES ($d, EXTRACT(EPOCH FROM (SELECT NOW())) * 1000, $d, $d)" % (index,band,value)
