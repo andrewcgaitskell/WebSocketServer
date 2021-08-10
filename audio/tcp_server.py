@@ -30,7 +30,7 @@ while True:
     chunks = []
     while True:
         content = client_sock.recv(1024)
-        print(type(content))
+        #print(type(content))
         if len(content) ==0:
            break
  
@@ -40,7 +40,7 @@ while True:
             band = sensorbytes[0]
             sensorvalue = sensorbytes[1] * 256 + sensorbytes[2]
             ##sensorvalue = int.from_bytes(sensorcontet, byteorder='big')
-            print("band:", band, " sensor value:",sensorvalue)
+            #print("band:", band, " sensor value:",sensorvalue)
             index = index + 1
             sqlcmnd = f"INSERT INTO public.raw_sensordata(index, millitime, band, value) VALUES ({index}, EXTRACT(EPOCH FROM (SELECT NOW())) * 1000, {band}, {sensorvalue})"
     
