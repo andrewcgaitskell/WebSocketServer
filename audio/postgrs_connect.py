@@ -22,7 +22,7 @@ finally:
     connection.commit()
     connection.close()
 
-sqlcmnd = "INSERT INTO public.raw_sensordata(index, millitime, band, value) VALUES (1, 2, 3, 4);
+sqlcmnd = "INSERT INTO public.raw_sensordata(index, millitime, band, value) VALUES (1, 2, 3, 4)";
     
 #sqlcmnd = 'COPY "raw_CovidTrackerGantt" FROM \''+ filename + '\' DELIMITER \',\' CSV;'
 with engine.connect().execution_options(autocommit=True) as con:
