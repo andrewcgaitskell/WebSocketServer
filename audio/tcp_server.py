@@ -19,7 +19,7 @@ while True:
     chunks = []
     while True:
         content = client_sock.recv(32)
- 
+        print(type(content))
         if len(content) ==0:
            break
  
