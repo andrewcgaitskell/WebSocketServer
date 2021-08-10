@@ -6,7 +6,7 @@ import socket
 serv_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM, proto=0)
 
 # Bind server socket to loopback network interface.
-serv_sock.bind((', 5010))
+serv_sock.bind(('', 5010))
 
 # Turn server socket into listening mode.
 serv_sock.listen(10)
