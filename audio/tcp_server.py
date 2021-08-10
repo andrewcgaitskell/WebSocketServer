@@ -2,6 +2,25 @@
 
 import socket
 
+import numpy as np # linear algebra
+import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
+import wget
+import os
+from sqlalchemy import create_engine
+import psycopg2
+
+import os
+
+engine = create_engine('postgresql://pythonuser:pythonuser@localhost:5432/data')
+
+connection = engine.raw_connection()
+try:
+    cursor = connection.cursor()
+    cursor.execute(fs)
+finally:
+    connection.commit()
+    connection.close()
+
 # Create server socket.
 serv_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM, proto=0)
 
@@ -30,6 +49,12 @@ while True:
             sensorvalue = sensorbytes[1] * 256 + sensorbytes[2]
             ##sensorvalue = int.from_bytes(sensorcontet, byteorder='big')
             print("band:", band, " sensor value:",sensorvalue)
+           
+            sqlcmnd = f"INSERT INTO public.raw_sensordata(index, millitime, band, value) VALUES ({index}, EXTRACT(EPOCH FROM (SELECT NOW())) * 1000, {band}, {sensorvalue})"
+    
+            #sqlcmnd = 'COPY "raw_CovidTrackerGantt" FROM \''+ filename + '\' DELIMITER \',\' CSV;'
+            with engine.connect().execution_options(autocommit=True) as con:
+              con.execute(sqlcmnd)
     #print(chunks)
     #client_sock.sendall(b''.join(chunks))
     client_sock.close()
