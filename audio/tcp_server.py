@@ -18,12 +18,13 @@ while True:
 
     chunks = []
     while True:
-        # Keep reading while the client is writing.
-        data = client_sock.recv(1)
-        if not data:
-            # Client is done with sending.
-            break
-        chunks.append(data)
-    print(chunks)
-    client_sock.sendall(b''.join(chunks))
+        content = client_sock.recv(32)
+ 
+        if len(content) ==0:
+           break
+ 
+        else:
+            print(content)
+    #print(chunks)
+    #client_sock.sendall(b''.join(chunks))
     client_sock.close()
