@@ -24,6 +24,6 @@ while True:
             # Client is done with sending.
             break
         chunks.append(data)
-
+    print(chunks)
     client_sock.sendall(b''.join(chunks))
     client_sock.close()
