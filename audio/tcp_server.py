@@ -13,14 +13,6 @@ import os
 
 engine = create_engine('postgresql://pythonuser:pythonuser@localhost:5432/data')
 
-connection = engine.raw_connection()
-try:
-    cursor = connection.cursor()
-    cursor.execute(fs)
-finally:
-    connection.commit()
-    connection.close()
-
 # Create server socket.
 serv_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM, proto=0)
 
